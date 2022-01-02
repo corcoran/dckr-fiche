@@ -48,6 +48,10 @@ endif
 
 fiche_build:
 	git submodule update -f fiche
+	$(MAKE) -C fiche
+
+fiche_build_static:
+	git submodule update -f fiche
 	cp files/Makefile fiche/Makefile
 	$(MAKE) -C fiche
 	cp fiche/fiche-static files/fiche-static

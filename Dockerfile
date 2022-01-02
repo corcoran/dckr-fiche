@@ -1,4 +1,4 @@
-FROM joeshaw/busybox-nonroot
+FROM alpine
 
 ENV DOMAIN "localhost"
 ENV SLUG 8
@@ -7,7 +7,11 @@ ENV PORT "9999"
 ENV LOGFILE "/dev/stdout"
 ENV ARGS ""
 
-ADD files/fiche-static /fiche
+ADD fiche fiche_build
+RUN apk add --update alpine-sdk && \
+    apk --no-cache --update add build-base
+
+RUN make -C fiche_build && cp fiche_build/fiche /fiche
 ADD files/index.html /data/
 RUN chown -R nobody /data
 
