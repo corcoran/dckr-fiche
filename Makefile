@@ -7,7 +7,7 @@ build: date fiche_build docker_build output date
 release: fiche_build docker_build docker_push output
 
 # Image and binary can be overidden with env vars.
-DOCKER_IMAGE ?= fboaventura/dckr-fiche
+DOCKER_IMAGE ?= jcorcoran/dckr-fiche
 
 # Get the latest commit.
 GIT_COMMIT = $(strip $(shell git rev-parse --short HEAD))

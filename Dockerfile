@@ -4,6 +4,8 @@ ENV DOMAIN "localhost"
 ENV SLUG 8
 ENV BUFFER 4096
 ENV PORT "9999"
+ENV LOGFILE "/dev/stdout"
+ENV ARGS ""
 
 ADD files/fiche-static /fiche
 ADD files/index.html /data/
@@ -15,7 +17,7 @@ VOLUME /data
 
 USER nobody
 
-CMD /fiche -d ${DOMAIN} -o /data -l /dev/stdout -p ${PORT} -s ${SLUG} -B ${BUFFER}
+CMD /fiche -d ${DOMAIN} -o /data -l ${LOGFILE} -p ${PORT} -s ${SLUG} -B ${BUFFER} ${ARGS}
 
 # Metadata params
 ARG BUILD_DATE
